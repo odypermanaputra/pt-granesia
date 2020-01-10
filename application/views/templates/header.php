@@ -44,9 +44,11 @@
     <link href="<?= base_url('assets/') ?>vendor/datatables/btn/dataTables.css">
 
 
-    <!-- datetimepicker -->
-    <link rel="stylesheet"
-        href="<?= base_url('assets/') ?>vendor/datetimepicker/timepicker/css/bootstrap-datetimepicker.min.css">
+    <!-- timepicker -->
+    <!-- <link rel="stylesheet" href="<?= base_url('assets/') ?>css/timepicker.min.css"> -->
+
+
+
 
 
     <!-- load jquery first -->

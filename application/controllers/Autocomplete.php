@@ -63,4 +63,11 @@ class autocomplete extends CI_Controller
 		$carisupplier = $this->model_auto->carisupplier($supplier);
 		echo json_encode($carisupplier);
 	}
+
+	public function koderoll()
+	{
+		$koderoll = $_GET['ambil_koderoll'];
+		$cariroll = $this->model_auto->carirollpaper($koderoll);
+		echo json_encode($cariroll);
+	}
 }

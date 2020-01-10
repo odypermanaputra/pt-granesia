@@ -38,6 +38,7 @@ class Admum extends CI_Controller
          $data['user'] = $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array();
         $data['judul'] = 'Laporan Detail WEB GOSS';
         $data['showOrderbyID'] = $this->order->showOrderById($idorder);
+        $data['rollpaper'] = $this->rollpaper->showAllRollPaper();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);

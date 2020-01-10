@@ -16,11 +16,11 @@
                         class="form-control form-control-sm bg-gradient-info text-white text-uppercase" id="no_order"
                         value="<?= $showOrderbyID['no_order'] ?>">
                 </div>
-                <div class="form-group col-sm-3">
+                <div class="form-group col-sm-6">
                     <label for="jenis_pekerjaan" class="col-form-label">Jenis Pekerjaan</label>
                     <input type="text" readonly
                         class="form-control form-control-sm bg-gradient-info text-white text-capitalize"
-                        id="jenis_pekerjaan" value="<?= $showOrderbyID['jenis_pekerjaan'] ?>">
+                        id="jenis_pekerjaan" value="<?= htmlspecialchars($showOrderbyID['jenis_pekerjaan']) ?>">
                 </div>
                 <div class="form-group col-sm-1">
                     <label for="oplah" class="col-form-label">Oplah</label>
@@ -98,14 +98,8 @@
                         </div>
                         <div class="form-group row">
                             <label for="pasang_plate_web" class="col-sm-5 col-form-label">Pasang Plate</label>
-                            <div id="datetimepicker" class="input-append date">
-                                <input type="text">
-                                <span class="add-on">
-                                    <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-                                </span>
-                            </div>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control form-control-sm jam" id="pasang_plate_web"
+                                <input type="time" class="form-control form-control-sm time" id="time"
                                     name="pasang_plate_web">
                             </div>
                         </div>
@@ -147,7 +141,7 @@
                         <div class="form-group row">
                             <label for="avel" class="col-sm-4 col-form-label">Avel</label>
                             <div class="input-group input-group-sm mb-3 col-sm-4">
-                                <input type="decimal" class="form-control form-control-sm" id="avel" name="avel">
+                                <input type="number" class="form-control form-control-sm" id="avel" name="avel">
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-gradient-info text-white">Kg</span>
                                 </div>
@@ -164,15 +158,23 @@
                         </div>
                         <div class="form-group row">
                             <label for="kode_roll" class="col-sm-4 col-form-label">Kode Roll</label>
-                            <div class="col-sm-5">
-                                <input type="text" class="form-control form-control-sm" id="kode_roll" name="kode_roll">
+                            <div class="col-sm-6">
+                                <select name="kode_rol" id="kode_roll" class="form-control form-control-sm">
+                                    <option value="">-- Pilih --</option>
+                                    <?php foreach ($rollpaper as $rp) : ?>
+                                    <option value="<?= $rp['kode_roll'] ?>"><?= $rp['kode_roll'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+
+
+
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="berat_roll" class="col-sm-4 col-form-label">Berat</label>
-                            <div class="input-group input-group-sm mb-3 col-sm-4">
+                            <div class="input-group input-group-sm mb-3 col-sm-5">
                                 <input type="decimal" class="form-control text-uppercase" id="berat_roll"
-                                    name="berat_roll">
+                                    name="berat_roll" readonly disable>
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-gradient-info text-white">Kg</span>
                                 </div>
@@ -182,7 +184,7 @@
                             <label for="as_selongsong" class="col-sm-4 col-form-label">As</label>
                             <div class="input-group input-group-sm mb-3 col-sm-4">
                                 <input type="text" class="form-control form-control-sm" id="as_selongsong"
-                                    name="as_selongsong">
+                                    name="as_selongsong" readonly disable>
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-gradient-info text-white">Kg</span>
                                 </div>
@@ -190,9 +192,9 @@
                         </div>
                         <div class="form-group row">
                             <label for="pemakaian_roll" class="col-sm-4 col-form-label">Pemakaian</label>
-                            <div class="input-group input-group-sm mb-3 col-sm-4">
+                            <div class="input-group input-group-sm mb-3 col-sm-6">
                                 <input type="decimal" class="form-control form-control-sm" id="pemakaian_roll"
-                                    name="pemakaian_roll">
+                                    name="pemakaian_roll" readonly disable>
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-gradient-info text-white">Kg</span>
                                 </div>
@@ -200,9 +202,9 @@
                         </div>
                         <div class="form-group row">
                             <label for="berat_sisa_roll" class="col-sm-4 col-form-label">Sisa</label>
-                            <div class="input-group input-group-sm mb-3 col-sm-4">
+                            <div class="input-group input-group-sm mb-3 col-sm-6">
                                 <input type="decimal" class="form-control text-uppercase" id="berat_sisa_roll"
-                                    name="berat_sisa_roll">
+                                    name="berat_sisa_roll" readonly disable>
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-gradient-info text-white">Kg</span>
                                 </div>
@@ -214,7 +216,7 @@
                         <div class="form-group row">
                             <label for="cyan" class="col-sm-4 col-form-label">Cyan</label>
                             <div class="input-group input-group-sm mb-3 col-sm-4">
-                                <input type="decimal" class="form-control text-uppercase" id="cyan" name="cyan">
+                                <input type="decimal" class="form-control text-uppercase" id="web_cyan" name="web_cyan">
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-gradient-info text-white">Kg</span>
                                 </div>
@@ -223,7 +225,8 @@
                         <div class="form-group row">
                             <label for="magenta" class="col-sm-4 col-form-label">Magenta</label>
                             <div class="input-group input-group-sm mb-3 col-sm-4">
-                                <input type="decimal" class="form-control text-uppercase" id="magenta" name="magenta">
+                                <input type="decimal" class="form-control text-uppercase" id="web_magenta"
+                                    name="web_magenta">
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-gradient-info text-white">Kg</span>
                                 </div>
@@ -232,7 +235,8 @@
                         <div class="form-group row">
                             <label for="yellow" class="col-sm-4 col-form-label">Yellow</label>
                             <div class="input-group input-group-sm mb-3 col-sm-4">
-                                <input type="decimal" class="form-control text-uppercase" id="yellow" name="yellow">
+                                <input type="decimal" class="form-control text-uppercase" id="web_yellow"
+                                    name="web_yellow">
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-gradient-info text-white">Kg</span>
                                 </div>
@@ -241,7 +245,8 @@
                         <div class="form-group row">
                             <label for="black" class="col-sm-4 col-form-label">Black</label>
                             <div class="input-group input-group-sm mb-3 col-sm-4">
-                                <input type="decimal" class="form-control text-uppercase" id="black" name="black">
+                                <input type="decimal" class="form-control text-uppercase" id="web_black"
+                                    name="web_black">
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-gradient-info text-white">Kg</span>
                                 </div>
@@ -255,7 +260,8 @@
                                         <div class="mx-auto">
                                             <a href="<?= base_url('Admum') ?>" type="button"
                                                 class="btn btn-md btn-info">Cancel</a>
-                                            <button type="submit" class="btn btn-md btn-primary">Simpan</button>
+                                            <button type="button" class="btn btn-md btn-primary" name="simpanlapweb"
+                                                id="simpanlaporanwebgoss">Simpan</button>
                                         </div>
 
                                     </div>

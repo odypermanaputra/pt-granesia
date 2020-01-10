@@ -5,9 +5,9 @@ class model_rollpaper extends CI_model
     // tampilkan semua data roll yang ada pada table
     public function showAllRollPaper()
     {
-        $this->db->select('tb_jenis_kertas.id,tb_jenis_kertas.jenis_kertas,tbl_kertasroll.*');
+        $this->db->select('tb_jenis_kertas.id_jkertasroll,tb_jenis_kertas.jenis_kertas,tbl_kertasroll.*');
         $this->db->from('tb_jenis_kertas');
-        $this->db->join('tbl_kertasroll', 'tbl_kertasroll.jenis_kertas_id=tb_jenis_kertas.id');
+        $this->db->join('tbl_kertasroll', 'tbl_kertasroll.jenis_kertas_id=tb_jenis_kertas.id_jkertasroll');
         return $this->db->get()->result_array();
     }
     // end function show all roll paper

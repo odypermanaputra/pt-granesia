@@ -50,7 +50,7 @@
 <script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- datetimepicker -->
-<script src="<?= base_url('assets/') ?>vendor/datetimepicker/timepicker/js/bootstrap-datetimepicker.min.js"></script>
+<!-- <script src="<?= base_url('assets/') ?>vendor/datetimepicker/timepicker/js/bootstrap-datetimepicker.min.js"></script> -->
 
 <!-- Core plugin JavaScript-->
 <script src="<?= base_url('assets/'); ?>vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -63,6 +63,9 @@
 
 <!-- bootstrap date picker -->
 <script src="<?= base_url('assets/'); ?>vendor/datepicker/js/bootstrap-datepicker.js"></script>
+
+<!-- time picker -->
+<!-- <script src="<?= base_url('assets/'); ?>js/timepicker.min.js"></script> -->
 
 
 <!-- Data Table plugins -->
@@ -126,16 +129,21 @@ function autofillsupplier() {
 };
 // end of search auto supplier 
 
-$(".datepicker").datetimepicker({
+$(".datepicker").datepicker({
     format: 'yyyy-mm-dd',
     autoclose: true,
     todayHighlight: true,
 });
 
-$("#pasang_plate_web").datetimepicker({
-    format: 'HH:mm',
-    pickDate: 'false',
-});
+// var timepicker = new TimePicker('time', {
+//     lang: 'en',
+//     theme: 'dark'
+// });
+// timepicker.on('change', function(evt) {
+
+//     var value = (evt.hour || '00') + ':' + (evt.minute || '00');
+//     evt.element.value = value;
+// });
 
 
 
@@ -610,26 +618,83 @@ $('.klikverifikasi').on('click', function() {
 });
 // end of tombol verifikasi akuntansi
 
-// hitung roll sisa
-$('#berat_roll').on('change', function() {
+// pemakaian kertas
+$('#nomorator_web').on('keyup', function() {
     const gramatur = $('#gramatur').val();
     const lebar = $('#lebar').val();
     const cutoff = $('#cutoff').val();
+    const rumus = (gramatur * lebar * cutoff) / 10000;
+    const hasil = 1000 / rumus;
+    const nomorator = $(this).val();
+    const pemakaian_kertas_cetak_web = nomorator / hasil;
+    $('#pemakaian_roll').val(pemakaian_kertas_cetak_web);
+})
+// akhir pemakaian kertas 
+
+$('#kode_roll["selected"]').on('change', function() {
+    const koderoll = $(this).val();
+    $.ajax({
+        url: "<?= base_url('autocomplete/koderoll') ?>",
+        data: '&ambil_koderoll=' + koderoll,
+        success: function(data) {
+            var hasil = JSON.parse(data);
+            $.each(hasil, function(key, val) {
+                document.getElementById('berat_roll').value = val.weight;
+                document.getElementById('as_selongsong').value = val.weight_as_selongsong;
+            });
+        }
+    });
+    var berat_roll = $('#berat_roll').val();
+    console.log(berat_roll);
+    var avel = parseFloat($('#avel').val());
+    var waste = parseFloat($('#waste').val());
+    const pemakaian_roll = $('#pemakaian_roll').val();
+    var total_pemakaian_cetak = avel + waste;
+
+    // $('#berat_sisa_roll').val(pemakaian);
+});
+
+
+
+// simpan laporan web
+$('#simpanlaporanwebgoss').on('click', function() {
+    const no_order = $('#no_order').val();
+    const id_mesinweb = $('#mesin').val();
+    const velt = $('#velt').val();
+    const tgl_cetak_web = $('#tgl_cetak_web').val();
+    const jml_plate = $('#jml_plate').val();
+    const pasang_plate_web = $('#pasang_plate_web').val();
+    const mulai_cetak_web = $('#mulai_cetak_web').val();
+    const selesai_cetak_web = $('#selesai_cetak_web').val();
+    const insit = $('#insit').val();
+    const speed = $('#speed').val();
     const nomorator_web = $('#nomorator_web').val();
-    const berat_roll = $(this).val();
     const avel = $('#avel').val();
     const waste = $('#waste').val();
-    const weight_as = $('#weight_as_selongsong').val();
-
-    const ab_rolutuh = (gramatur * lebar * cutoff) / 10000;
-    const hasil_examplar = 1000 / ab_rolutuh;
-    const pemakaian_roll = nomorator_web / ab_rolutuh;
-    const berat_sisa = (berat_roll - avel - waste - pemakaian_roll) + weight_as;
-    $('#berat_sisa_roll').val(berat_sisa);
-
-
+    const kode_roll = $('#kode_roll').val();
+    const pemakaian_roll = $('#pemakaian_roll').val();
+    const berat_sisa_roll = $('#berat_sisa_roll').val();
+    const web_cyan = $('#web_cyan').val();
+    const web_magenta = $('#web_magenta').val();
+    const web_yellow = $('#web_yellow').val();
+    const web_black = $('#web_black').val();
+    if (speed == "" || nomorator_web == "" || web_cyan == "" || velt == "" || jml_plate == "") {
+        Swal.file({
+            type: 'error',
+            title: 'Oooops.....',
+            imageUrl: '<?= base_url("assets/img/profile/") ?>w644.jpg',
+            text: 'Masih ada data yang kosong'
+        });
+    } else {
+        Swal.file({
+            type: 'error',
+            title: 'Oooops.....',
+            imageUrl: '<?= base_url("assets/img/profile/") ?>w644.jpg',
+            text: 'Masih ada data yang kosong'
+        });
+    }
 })
-// akhir hitung roll sisa
+// akhir simpan laporan web
 </script>
 <script src="<?= base_url('assets/') ?>js/script.js">
 </script>

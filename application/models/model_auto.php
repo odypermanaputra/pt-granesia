@@ -35,4 +35,13 @@ class model_auto extends CI_model
 	{
 		return $this->db->get_where('supplier', ['supplier' => $supplier])->result_array();
 	}
+
+	public function carirollpaper($koderoll)
+	{
+		$this->db->select('tb_jenis_kertas.id_jkertasroll,tb_jenis_kertas.jenis_kertas,tb_jenis_kertas.weight_as_selongsong,tbl_kertasroll.*');
+        $this->db->from('tb_jenis_kertas');
+		$this->db->join('tbl_kertasroll', 'tbl_kertasroll.jenis_kertas_id=tb_jenis_kertas.id_jkertasroll');
+		$this->db->where('kode_roll', $koderoll);
+		return $this->db->get()->result_array();
+	}
 }
