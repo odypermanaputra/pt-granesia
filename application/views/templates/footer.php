@@ -627,39 +627,46 @@ $('#nomorator_web').on('keyup', function() {
     const hasil = 1000 / rumus;
     const nomorator = $(this).val();
     const pemakaian_kertas_cetak_web = nomorator / hasil;
+    const berat_asal = $('#berat_roll').val();
+    console.log(berat_asal);
     $('#pemakaian_roll').val(pemakaian_kertas_cetak_web);
 })
 // akhir pemakaian kertas 
 
-$('#kode_roll["selected"]').on('change', function() {
-    const koderoll = $(this).val();
+$('#kode_roll').on('change', function() {
+    const koderoll = $(this).find(":selected").val();
+    // console.log(koderoll)
     $.ajax({
         url: "<?= base_url('autocomplete/koderoll') ?>",
         data: '&ambil_koderoll=' + koderoll,
         success: function(data) {
             var hasil = JSON.parse(data);
             $.each(hasil, function(key, val) {
-                document.getElementById('berat_roll').value = val.weight;
+                document.getElementById('berat_roll').value = val.sisa;
                 document.getElementById('as_selongsong').value = val.weight_as_selongsong;
             });
         }
     });
-    var berat_roll = $('#berat_roll').val();
-    console.log(berat_roll);
-    var avel = parseFloat($('#avel').val());
-    var waste = parseFloat($('#waste').val());
-    const pemakaian_roll = $('#pemakaian_roll').val();
-    var total_pemakaian_cetak = avel + waste;
-
-    // $('#berat_sisa_roll').val(pemakaian);
 });
+
+// hitung pemakaian kertas
+$('#waste').on('keyup', function() {
+    var avel = parseFloat($('#avel').val());
+    var berat_roll = parseFloat($('#berat_roll').val());
+    var waste = parseFloat($(this).val());
+    var awas = avel + waste;
+    var pemakaian_kertas = parseFloat($('#pemakaian_roll').val());
+    var pemakaian = parseFloat(berat_roll - (awas + pemakaian_kertas));
+    $('#berat_sisa_roll').val(pemakaian);
+})
+// end function of hitung pemakaian kertas
 
 
 
 // simpan laporan web
 $('#simpanlaporanwebgoss').on('click', function() {
     const no_order = $('#no_order').val();
-    const id_mesinweb = $('#mesin').val();
+    const id_mesinweb = $('#id_mesinweb').val();
     const velt = $('#velt').val();
     const tgl_cetak_web = $('#tgl_cetak_web').val();
     const jml_plate = $('#jml_plate').val();
@@ -679,18 +686,67 @@ $('#simpanlaporanwebgoss').on('click', function() {
     const web_yellow = $('#web_yellow').val();
     const web_black = $('#web_black').val();
     if (speed == "" || nomorator_web == "" || web_cyan == "" || velt == "" || jml_plate == "") {
-        Swal.file({
-            type: 'error',
+        Swal.fire({
             title: 'Oooops.....',
             imageUrl: '<?= base_url("assets/img/profile/") ?>w644.jpg',
             text: 'Masih ada data yang kosong'
         });
     } else {
-        Swal.file({
-            type: 'error',
-            title: 'Oooops.....',
-            imageUrl: '<?= base_url("assets/img/profile/") ?>w644.jpg',
-            text: 'Masih ada data yang kosong'
+        $.ajax({
+            data: {
+                no_order: no_order,
+                id_mesinweb: id_mesinweb,
+                velt: velt,
+                tgl_cetak_web: tgl_cetak_web,
+                jml_plate: jml_plate,
+                pasang_plate_web: pasang_plate_web,
+                mulai_cetak_web: mulai_cetak_web,
+                selesai_cetak_web: selesai_cetak_web,
+                insit: insit,
+                speed: speed,
+                nomorator_web: nomorator_web,
+                avel: avel,
+                waste: waste,
+                kode_roll: kode_roll,
+                pemakaian_roll: pemakaian_roll,
+                berat_sisa_roll: berat_sisa_roll,
+                web_cyan: web_cyan,
+                web_magenta: web_magenta,
+                web_yellow: web_yellow,
+                web_black: web_black,
+            },
+            type: 'POST',
+            url: "<?= base_url('Admum/savealllaporanadmum') ?>",
+            success: function() {
+                $('#no_order').val("");
+                $('#mesin').val("");
+                $('#velt').val("");
+                $('#tgl_cetak_web').val("");
+                $('#jml_plate').val("");
+                $('#pasang_plate_web').val("");
+                $('#mulai_cetak_web').val("");
+                $('#selesai_cetak_web').val("");
+                $('#insit').val("");
+                $('#speed').val("");
+                $('#nomorator_web').val("");
+                $('#avel').val("");
+                $('#waste').val("");
+                $('#kode_roll').val("");
+                $('#pemakaian_roll').val("");
+                $('#berat_sisa_roll').val("");
+                $('#web_cyan').val("");
+                $('#web_magenta').val("");
+                $('#web_yellow').val("");
+                $('#web_black').val("");
+                Swal.fire({
+                    title: 'Selamat!',
+                    text: 'Data berhasil Disimpan',
+                    imageUrl: '<?= base_url("assets/img/profile/") ?>w644.jpg',
+                    imageWidth: 656,
+                    imageHeight: 200,
+                    imageAlt: 'Custom image',
+                });
+            },
         });
     }
 })

@@ -58,4 +58,14 @@ class model_rollpaper extends CI_model
         $this->db->update('tbl_kertasroll', $data);
     }
     // end function edit harga roll paper
+
+    public function updatesisaroll()
+    {
+        $koderoll = $this->input->post('kode_roll');
+        $data = [
+            'sisa' => $this->input->post('berat_sisa_roll')
+        ];
+        $this->db->where('kode_roll', $koderoll);
+        $this->db->update('tbl_kertasroll', $data);
+    }
 }

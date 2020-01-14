@@ -36,6 +36,8 @@
                     <input type="hidden" value="<?= $showOrderbyID['cutoff'] ?>" name="cutoff" id="cutoff">
                     <input type="hidden" value="<?= $showOrderbyID['weight_as_selongsong'] ?>"
                         name="weight_as_selongsong" id="weight_as_selongsong">
+                    <input type="hidden" value="<?= $showOrderbyID['mesinweb_id'] ?>" name="id_mesinweb"
+                        id="id_mesinweb">
                 </div>
                 <div class="form-group col-sm-2">
                     <label for="jenis_kertas" class="col-form-label">Bahan Kertas Roll</label>
@@ -99,7 +101,7 @@
                         <div class="form-group row">
                             <label for="pasang_plate_web" class="col-sm-5 col-form-label">Pasang Plate</label>
                             <div class="col-sm-5">
-                                <input type="time" class="form-control form-control-sm time" id="time"
+                                <input type="time" class="form-control form-control-sm time" id="pasang_plate_web"
                                     name="pasang_plate_web">
                             </div>
                         </div>
@@ -118,26 +120,58 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="insit" class="col-sm-5 col-form-label">Insit</label>
+                            <label for="kode_roll" class="col-sm-5 col-form-label">Kode Roll</label>
+                            <div class="col-sm-6">
+                                <select name="kode_rol" id="kode_roll" class="form-control form-control-sm">
+                                    <option value="">-- Pilih --</option>
+                                    <?php foreach ($rollpaper as $rp) : ?>
+                                    <option value="<?= $rp['kode_roll'] ?>"><?= $rp['kode_roll'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="berat_roll" class="col-sm-5 col-form-label">Berat</label>
+                            <div class="input-group input-group-sm mb-3 col-sm-5">
+                                <input type="number" class="form-control text-uppercase" id="berat_roll"
+                                    name="berat_roll" readonly disable>
+                                <div class="input-group-append">
+                                    <span class="input-group-text bg-gradient-info text-white">Kg</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="as_selongsong" class="col-sm-5 col-form-label">As</label>
+                            <div class="input-group input-group-sm mb-3 col-sm-4">
+                                <input type="text" class="form-control form-control-sm" id="as_selongsong"
+                                    name="as_selongsong" readonly disable>
+                                <div class="input-group-append">
+                                    <span class="input-group-text bg-gradient-info text-white">Kg</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col">
+                        <div class="form-group row">
+                            <label for="insit" class="col-sm-4 col-form-label">Insit</label>
                             <div class="col-sm-3">
                                 <input type="number" class="form-control form-control-sm" id="insit" name="insit">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="speed" class="col-sm-5 col-form-label">Speed</label>
+                            <label for="speed" class="col-sm-4 col-form-label">Speed</label>
                             <div class="col-sm-5">
                                 <input type="number" class="form-control form-control-sm" id="speed" name="speed">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="nomorator_web" class="col-sm-5 col-form-label">Nomorator</label>
+                            <label for="nomorator_web" class="col-sm-4 col-form-label">Nomorator</label>
                             <div class="col-sm-4">
                                 <input type="number" class="form-control form-control-sm" id="nomorator_web"
                                     name="nomorator_web">
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
                         <div class="form-group row">
                             <label for="avel" class="col-sm-4 col-form-label">Avel</label>
                             <div class="input-group input-group-sm mb-3 col-sm-4">
@@ -156,40 +190,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="kode_roll" class="col-sm-4 col-form-label">Kode Roll</label>
-                            <div class="col-sm-6">
-                                <select name="kode_rol" id="kode_roll" class="form-control form-control-sm">
-                                    <option value="">-- Pilih --</option>
-                                    <?php foreach ($rollpaper as $rp) : ?>
-                                    <option value="<?= $rp['kode_roll'] ?>"><?= $rp['kode_roll'] ?></option>
-                                    <?php endforeach; ?>
-                                </select>
 
-
-
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="berat_roll" class="col-sm-4 col-form-label">Berat</label>
-                            <div class="input-group input-group-sm mb-3 col-sm-5">
-                                <input type="decimal" class="form-control text-uppercase" id="berat_roll"
-                                    name="berat_roll" readonly disable>
-                                <div class="input-group-append">
-                                    <span class="input-group-text bg-gradient-info text-white">Kg</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="as_selongsong" class="col-sm-4 col-form-label">As</label>
-                            <div class="input-group input-group-sm mb-3 col-sm-4">
-                                <input type="text" class="form-control form-control-sm" id="as_selongsong"
-                                    name="as_selongsong" readonly disable>
-                                <div class="input-group-append">
-                                    <span class="input-group-text bg-gradient-info text-white">Kg</span>
-                                </div>
-                            </div>
-                        </div>
                         <div class="form-group row">
                             <label for="pemakaian_roll" class="col-sm-4 col-form-label">Pemakaian</label>
                             <div class="input-group input-group-sm mb-3 col-sm-6">

@@ -9,6 +9,7 @@ class model_order extends CI_model
         $this->db->from('tbl_order');
         $this->db->join('master_data_barang', 'master_data_barang.kode_barang=tbl_order.bahan_cover');
         $this->db->join('tb_jenis_kertas', 'tb_jenis_kertas.id_jkertasroll=tbl_order.bahan_isi');
+        $this->db->join('tbl_mesinweb','tbl_mesinweb.idmesinweb=tbl_order.mesinweb_id');
         return $this->db->get()->result_array();
     }
 

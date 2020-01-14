@@ -1,6 +1,5 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
     <?= $this->session->flashdata('flash');  ?>
 
     <div class="card">
@@ -11,6 +10,7 @@
                         <th scope="col">No</th>
                         <th scope="col">No Order</th>
                         <th scope="col">Jenis Pekerjaan</th>
+                        <th scope="col">Mesin</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
@@ -23,8 +23,9 @@
                         <td><?= $no++; ?></td>
                         <td class="text-uppercase"><?= $order['no_order'] ?></td>
                         <td class="text-capitalize"><?= $order['jenis_pekerjaan'] ?></td>
-                        <td><a href="<?= base_url('Admum/lapdetail') ?>/<?= $order['id_order'] ?>"
-                                class="badge badge-warning">detail</a></td>
+                        <td class="text-capitalize"><?= $order['mesin'] ?></td>
+                        <td><a href="<?= base_url('Admum/laporancetak') ?>/<?= $order['idlapadmum'] ?>"
+                                class="badge badge-warning">laporan</a></td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
