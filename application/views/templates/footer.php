@@ -625,6 +625,8 @@ $('#nomorator_web').on('keyup', function() {
     const cutoff = $('#cutoff').val();
     const rumus = (gramatur * lebar * cutoff) / 10000;
     const hasil = 1000 / rumus;
+    console.log(rumus);
+    console.log(hasil);
     const nomorator = $(this).val();
     const pemakaian_kertas_cetak_web = nomorator / hasil;
     const berat_asal = $('#berat_roll').val();
@@ -656,7 +658,7 @@ $('#waste').on('keyup', function() {
     var waste = parseFloat($(this).val());
     var awas = avel + waste;
     var pemakaian_kertas = parseFloat($('#pemakaian_roll').val());
-    var pemakaian = parseFloat(berat_roll - (awas + pemakaian_kertas));
+    var pemakaian = parseFloat(berat_roll - pemakaian_kertas);
     $('#berat_sisa_roll').val(pemakaian);
 })
 // end function of hitung pemakaian kertas
