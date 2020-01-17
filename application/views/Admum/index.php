@@ -24,7 +24,7 @@
                         <td class="text-uppercase"><?= $order['no_order'] ?></td>
                         <td class="text-capitalize"><?= $order['jenis_pekerjaan'] ?></td>
                         <td><a href="<?= base_url('Admum/lapdetail') ?>/<?= $order['id_order'] ?>"
-                                class="badge badge-warning">detail</a></td>
+                                class="badge badge-success">Buat Laporan</a></td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>

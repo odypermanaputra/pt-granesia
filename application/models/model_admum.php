@@ -29,10 +29,15 @@ class model_admum extends CI_Model
         $this->db->insert('lap_admum', $data);
     }
 
-    public function showalllaporan($id_laporan)
+    public function showalllaporan($show_lap)
     {
-        $this->db->where('idlapadmum', $id_laporan);
-        $this->db->get('lap_admum')->row_array();
+        $this->db->select('*');
+        $this->db->from('lap_admum');
+        $this->db->join('tbl_mesinweb','tbl_mesinweb.idmesinweb=lap_admum.id_mesinweb');
+        $this->db->join('tbl_order','tbl_order.no_order=lap_admum.no_order');
+        $this->db->join('tb_jenis_kertas','tb_jenis_kertas.id_jkertasroll=tbl_order.bahan_isi');
+        $this->db->where('lap_admum.no_order', $show_lap);
+        return $this->db->get()->result_array();
     }
     
 }

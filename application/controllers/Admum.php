@@ -24,9 +24,8 @@ class Admum extends CI_Controller
     {
          // inisial user dan role user
         $data['user'] = $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array();
-        $data['judul'] = 'Laporan WEB GOSS';
+        $data['judul'] = 'Order Masuk';
         $data['showOrder'] = $this->order->showAllOrder();
-
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -37,7 +36,7 @@ class Admum extends CI_Controller
     public function lapdetail($idorder)
     {
         $data['user'] = $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array();
-        $data['judul'] = 'Laporan Detail WEB GOSS';
+        $data['judul'] = 'Laporan Per VELT';
         $data['showOrderbyID'] = $this->order->showOrderById($idorder);
         $data['rollpaper'] = $this->rollpaper->showAllRollPaper();
         $this->load->view('templates/header', $data);
@@ -57,7 +56,7 @@ class Admum extends CI_Controller
     {
         $data['user'] = $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array();
         $data['judul'] = 'Laporan Cetak';
-        $data['showlaporan'] = $this->order->showalllaporan();
+        $data['showOrder'] = $this->order->showAllOrder();
         // $data['showOrderbyID'] = $this->order->showOrderById();
         // $data['rollpaper'] = $this->rollpaper->showAllRollPaper();
         // $data['laporan'] = $this->rollpaper->showalllaporan();
@@ -68,16 +67,17 @@ class Admum extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function laporacetak($id_laporan)
+    public function detaillaporacetakweb($id_order)
     {
-        
         $data['user'] = $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array();
-        $data['laporan'] = $this->admum->showalllaporan($id_laporan);
-        // $data['laporan'] = $id_laporan;
+        $data['judul'] = "Detail Laporan";
+        $nom_order = $this->order->showOrderById($id_order);
+        $show_lap = $nom_order['no_order'];
+        $data['laporan'] = $this->admum->showalllaporan($show_lap);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('Admum/laporancetak', $data);
+        $this->load->view('Admum/detaillaporancetak', $data);
         $this->load->view('templates/footer');
     }
 }
