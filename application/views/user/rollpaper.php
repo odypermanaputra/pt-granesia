@@ -60,6 +60,13 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="no_dokumen" class="col-sm-4 col-form-label">No Dokumen</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm text-uppercase" id="no_dokumen"
+                                    name="no_dokumen" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="kode_roll" class="col-sm-4 col-form-label">Kode Roll</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control form-control-sm text-uppercase" id="kode_roll"

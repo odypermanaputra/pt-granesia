@@ -343,7 +343,7 @@ class Akuntansi extends CI_Controller
         } else {
             $this->rollpaper->tambahRollPaper();
             $this->session->set_flashdata('flash', 'ditambahkan');
-            redirect('Akuntansi/rollpaper');
+            redirect('Akuntansi/akRollPaper');
         }
     }
     // end controler akuntansi input harga

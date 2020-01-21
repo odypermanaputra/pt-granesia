@@ -25,6 +25,7 @@ class model_rollpaper extends CI_model
         $data = [
             'tgl_input' =>  $this->input->post('tgl_input'),
             'tgl_masuk' => $this->input->post('tgl_masuk'),
+            'no_dokumen' => $this->input->post('no_dokumen'),
             'kode_roll' => $this->input->post('kode_roll'),
             'jenis_kertas_id' => $this->input->post('jenis_kertas'),
             'weight' => $this->input->post('weight'),
@@ -48,6 +49,7 @@ class model_rollpaper extends CI_model
             [
                 "tgl_input"         => $this->input->post('tgl_input', true),
                 "tgl_masuk"         => $this->input->post('tgl_masuk', true),
+                "no_dokumen"         => $this->input->post('no_dokumen', true),
                 "kode_roll"         => $this->input->post('kode_roll', true),
                 "jenis_kertas_id"   => $this->input->post('jenis_kertas_id', true),
                 "weight"            => $this->input->post('weight', true),

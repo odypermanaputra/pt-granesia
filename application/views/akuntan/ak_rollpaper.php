@@ -12,6 +12,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Tanggal Masuk</th>
+                <th scope="col">Nomor Dokumen</th>
                 <th scope="col">Kode Roll</th>
                 <th scope="col">Jenis kertas</th>
                 <th scope="col">Quantity (Berat) **(kg) </th>
@@ -28,6 +29,7 @@
             <tr>
                 <th scope="row"><?= $no++ ?></th>
                 <td scope="row"><?= date('d M Y', strtotime($rp['tgl_masuk'])) ?></td>
+                <td class="text-uppercase "><?= $rp['no_dokumen'] ?></td>
                 <td class="text-uppercase "><?= $rp['kode_roll'] ?></td>
                 <td class="text-capitalize"><?= $rp['jenis_kertas'] ?></td>
                 <td><?= $rp['weight'] ?></td>
@@ -64,6 +66,13 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="no_dokumen" class="col-sm-4 col-form-label">No. Dokumen</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control form-control-sm text-uppercase" id="no_dokumen"
+                                    name="no_dokumen" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="kode_roll" class="col-sm-4 col-form-label">Kode Roll</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control form-control-sm text-uppercase" id="kode_roll"
@@ -86,6 +95,13 @@
                             <label for="weight" class="col-sm-4 col-form-label">Quantity (Berat)</label>
                             <div class="col-sm-8">
                                 <input type="decimal" class="form-control form-control-sm" id="weight" name="weight"
+                                    autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="harga" class="col-sm-4 col-form-label">Harga</label>
+                            <div class="col-sm-8">
+                                <input type="decimal" class="form-control form-control-sm" id="harga" name="harga"
                                     autocomplete="off" required>
                             </div>
                         </div>
