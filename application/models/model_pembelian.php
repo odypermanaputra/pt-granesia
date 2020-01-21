@@ -115,7 +115,7 @@ class model_pembelian extends CI_model
 				"kode_barang" 	=> $this->input->post('kode_barang', true),
 				"nama_barang" 	=> $this->input->post('nama_barang', true),
 				"keterangan" 	=> $this->input->post('keterangan', true),
-				"kategori" 		=> $this->input->post('kategori', true),
+				// "kategori" 		=> $this->input->post('kategori', true),
 				"qty"			=> $this->input->post('qty', true),
 				"hrg_satuan"	=> $this->input->post('hrg_satuan', true),
 				"jumlah"		=> $this->input->post('jumlah', true),

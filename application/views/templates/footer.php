@@ -720,8 +720,6 @@ $('#simpanlaporanwebgoss').on('click', function() {
             type: 'POST',
             url: "<?= base_url('Admum/savealllaporanadmum') ?>",
             success: function() {
-                $('#no_order').val("");
-                $('#mesin').val("");
                 $('#velt').val("");
                 $('#tgl_cetak_web').val("");
                 $('#jml_plate').val("");
