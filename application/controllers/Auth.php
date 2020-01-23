@@ -56,6 +56,9 @@ class auth extends CI_Controller {
 					if ($query['role_id'] == 5){
 						redirect('Admum');
 					}
+					if ($query['role_id'] == 10){
+						redirect('Admin');
+					}
 					
 					
 				}else{
