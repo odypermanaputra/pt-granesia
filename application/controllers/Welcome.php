@@ -20,6 +20,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		// cek pertaa kali untuk menampilkan atau proses controller
 		$this->load->view('welcome_message');
 	}
 }
